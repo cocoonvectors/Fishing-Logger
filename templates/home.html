@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Fishing Logger{% endblock %}
+
+{% block content %}
+    <p>Welcome to Fishing Logger! Track your catches and review your trips.</p>
+    <p><a href="/log">Log a New Trip</a></p>
+    <p><a href="/trips">View All Trips</a></p>
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+{% endblock %}

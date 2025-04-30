@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Log a Trip{% endblock %}
+
+{% block content %}
+    {% for msg in get_flashed_messages() %}
+        <div id="flash-message" class="logpopup">{{ msg }} </div>
+    {% endfor %}
+    <form method="post">
+        <label for="species">Species:</label><br>
+        <input type="text" id="species" name="species"><br><br>
+
+        <label for="location">Location:</label><br>
+        <input type="text" id="location" name="location"><br><br>
+
+        <label for="weather">Weather:</label><br>
+        <input type="text" id="weather" name="weather"><br><br>
+
+        <label for="time">Time of Day:</label><br>
+        <input type="text" id="time" name="time"><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+{% endblock %}

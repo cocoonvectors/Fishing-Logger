@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Trip Log{% endblock %}
+
+{% block content %}
+    {% if trips %}
+         {% for msg in get_flashed_messages() %}
+        <div id="flash-message" class="popup">{{ msg }} </div>
+        {% endfor %}
+        {% for trip in trips %}
+            <div style="margin-bottom: 20px;">
+                <h3>Trip {{ loop.index }}</h3>
+                <p>
+                    <strong>Species:</strong> {{ trip.species }}<br>
+                    <strong>Location:</strong> {{ trip.location }}<br>
+                    <strong>Weather:</strong> {{ trip.weather }}<br>
+                    <strong>Time:</strong> {{ trip.time }}
+                </p>
+                <form method="post" action="/delete/{{ loop.index0 }}">
+                    <input type="submit" value="Delete" style="background-color: red; color: white;">
+                </form>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No trips logged.</p>
+    {% endif %}
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+{% endblock %}

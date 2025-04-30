@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Fishing Logger{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>🎣 Fishing Logger</h1>
+        <nav>
+            <a href="/">Home</a> |
+            <a href="/log">Log a Trip</a> |
+            <a href="/trips">View Trips</a>
+        </nav>
+        <hr>
+    </header>
+    {% block content %}{% endblock %}
+
+
+    {% block scripts %}
+
+    <script>
+        console.log("JS loaded", window.location.pathname);
+        var flashmessage = document.getElementById("flash-message");
+        console.log("flashmessage:", flashmessage);
+
+        if (flashmessage && window.location.pathname === "/trips" && flashmessage.textContent.includes("Deleted Trip")) {
+                //display message
+                flashmessage.style.display = "flex";
+                //hide message after 3s
+                setTimeout(function() {flashmessage.style.display = "none";}, 5000);
+                flashmessage.classList.add("fade-out");
+        } else if (flashmessage && window.location.pathname === "/log" && flashmessage.textContent.includes("Trip logged")) {
+                //display message
+                flashmessage.style.display = "flex";
+                //hide message after 3s
+                setTimeout(function() {flashmessage.style.display = "none";}, 5000);
+                flashmessage.classList.add("fade-out");
+
+        }else { 
+                //do nothing
+                console.log("No flash message to display.");
+        }
+    </script>
+{% endblock %}
+
+</body>
+</html>
