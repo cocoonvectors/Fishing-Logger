@@ -44,6 +44,13 @@ def trips():
                 trip_data = json.load(f)
     except FileNotFoundError:
         trip_data = []
+    species = request.args.get("species")
+    if species:
+        filteredtrips = []
+        for trip in trip_data:
+            if trip["species"].lower() == species.lower(): 
+                filteredtrips.append(trip)
+        return render_template("trips.html", trips=filteredtrips)    
     return render_template("trips.html", trips=trip_data)
 
 @app.route("/delete/<int:index>",methods=["POST"])

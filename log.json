@@ -60,12 +60,6 @@
         "time": ""
     },
     {
-        "species": "",
-        "weather": "",
-        "location": "",
-        "time": ""
-    },
-    {
         "species": "asd",
         "weather": "asd",
         "location": "asd",
@@ -181,6 +175,42 @@
     },
     {
         "species": "",
+        "weather": "",
+        "location": "",
+        "time": ""
+    },
+    {
+        "species": "",
+        "weather": "",
+        "location": "",
+        "time": ""
+    },
+    {
+        "species": "salmon",
+        "weather": "",
+        "location": "",
+        "time": ""
+    },
+    {
+        "species": "salmon",
+        "weather": "",
+        "location": "",
+        "time": ""
+    },
+    {
+        "species": "salmon",
+        "weather": "",
+        "location": "",
+        "time": ""
+    },
+    {
+        "species": "salmon",
+        "weather": "",
+        "location": "",
+        "time": ""
+    },
+    {
+        "species": "SALMON",
         "weather": "",
         "location": "",
         "time": ""

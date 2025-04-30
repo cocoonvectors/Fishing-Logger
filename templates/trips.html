@@ -3,6 +3,19 @@
 {% block title %}Trip Log{% endblock %}
 
 {% block content %}
+
+    <form method="get" action="/trips">
+        <label for="species-list">Species:</label><br>
+        <datalist id="species-list">
+            <option value="trout">
+            <option value="salmon">
+            <option value="perch">
+            <option value="pike">
+            <option value="pike-perch">
+        </datalist>
+        <input type="text" list="species-list" name="species" id="species">
+    </form>
+
     {% if trips %}
          {% for msg in get_flashed_messages() %}
         <div id="flash-message" class="popup">{{ msg }} </div>
