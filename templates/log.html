@@ -8,16 +8,16 @@
     {% endfor %}
     <form method="post">
         <label for="species">Species:</label><br>
-        <input type="text" id="species" name="species"><br><br>
+        <input type="text" id="species" name="species" required><br><br>
 
         <label for="location">Location:</label><br>
-        <input type="text" id="location" name="location"><br><br>
+        <input type="text" id="location" name="location" required><br><br>
 
         <label for="weather">Weather:</label><br>
-        <input type="text" id="weather" name="weather"><br><br>
+        <input type="text" id="weather" name="weather" required><br><br>
 
         <label for="time">Time of Day:</label><br>
-        <input type="text" id="time" name="time"><br><br>
+        <input type="datetime-local" id="time" name="time" required><br><br>
 
         <input type="submit" value="Submit">
     </form>

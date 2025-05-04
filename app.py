@@ -1,4 +1,4 @@
-from flask import Flask, request,render_template,redirect
+from flask import Flask, request,render_template,redirect, flash
 import json
 
 import flask
@@ -32,7 +32,7 @@ def Log():
         trips.append(trip)
         with open("log.json", "w") as f:
              json.dump(trips, f, indent=4)
-        flask.flash("Trip logged")
+        flash("Trip logged")
         return redirect("/log")
     return render_template("log.html")
 
@@ -65,7 +65,7 @@ def delete(index):
         del trips[index]
         with open("log.json","w") as f:
             json.dump(trips, f, indent=4)
-    flask.flash("Deleted Catch")
+    flash("Deleted Catch")
     return redirect("/trips")
 
 if __name__ == "__main__":
