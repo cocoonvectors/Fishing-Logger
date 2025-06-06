@@ -244,7 +244,7 @@ def get_geocode():
 
     apikey = os.getenv('GEOCODE_API_KEY')
 
-    geocodeURL = "https://api.opencagedata.com/geocode/v1/json?q=" + lat + "+" + lon + "&key="+ apikey +";"
+    geocodeURL = "https://api.opencagedata.com/geocode/v1/json?q=" + lat + "+" + lon + "&key=" + apikey + ";"
 
     response = requests.get(geocodeURL)
     geocode_data = response.json()
