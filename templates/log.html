@@ -63,8 +63,6 @@
 
   <script>
         document.addEventListener("DOMContentLoaded", function (e) {
-            console.log("Page loaded");
-            console.log(document.getElementById('date').value)
             
             //init objects
             var newMarker,map,markerGroup
@@ -83,7 +81,6 @@
                 // Your logic goes here:
                 // if checked, update date and time inputs
                 if (mapAccess.checked){
-                    console.log(mapAccess);
                     catchDate = new Date().toISOString().split("T")[0];
                     let now = new Date();
                     let hours = now.getHours().toString().padStart(2, "0");
@@ -122,7 +119,6 @@
                         }),
                     }).then((response) => response.json())
                     .then((data) => {
-                        console.log(data);
                         //grab formatted location info and set it in the form
                         let locName = data.results[0].formatted
                         document.getElementById("location").value = locName;
@@ -143,10 +139,8 @@
                     }).then((response) => response.json())
                     .then((data) => {
                         // grab formatted location info and set it in the form
-                        console.log(data);
                         const hourly = data.forecast.forecastday[0].hour;
                         const targetTime = `${catchDate} ${catchTime}`;
-                        console.log(targetTime)
                         var locTemp,locHumid,locWind,locCloud
                         for (let i = 0; i < hourly.length; i++) {
                         const hourEntry = hourly[i];
@@ -177,7 +171,6 @@
                     }).then((response) => response.json())
                     .then((data) => {
                         // grab formatted location info and set it in the form
-                        console.log(data);
                         let locTemp = data.current.temp_c;
                         let locCloud = data.current.condition.text;
                         let locHumid = data.current.humidity;
@@ -204,7 +197,6 @@
                     }).then((response) => response.json())
                     .then((data) => {
                         //grab formatted location info and set it in the form
-                        console.log(data);
                         let locLunarPhase = data.astronomy.astro.moon_phase;
                         // let locSunrise = data.astronomy.astro.sunrise;
                         // let locSunset = data.current.condition.text;
@@ -217,7 +209,6 @@
                     })
                     .catch((err) => console.error("API error:", err));
                     } else{
-                        console.log("here")
                         datePopup = document.getElementById("catchDatePopup")
                         datePopup.style.display = "flex";
 

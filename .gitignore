@@ -1,3 +1,5 @@
+__pycache__/
+*.pyc
 .env
 sqltests/sqlconvcheck.py
 sqltests/sqlconversion.py
@@ -6,3 +8,5 @@ log.json
 FinalTaxons.tsv
 .venv/
 DataOrganizer/
+
+
