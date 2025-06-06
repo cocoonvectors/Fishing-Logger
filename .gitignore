@@ -1,0 +1,8 @@
+.env
+sqltests/sqlconvcheck.py
+sqltests/sqlconversion.py
+sqltests/sqlselecttest.py
+log.json
+FinalTaxons.tsv
+.venv/
+DataOrganizer/

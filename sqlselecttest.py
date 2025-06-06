@@ -13,7 +13,7 @@ def main ():
             cur.execute(statements)
             rows = cur.fetchall()
             for row in rows:
-                print(f"Name: {row['name']}, Common name: {row['common_name']}, Region: {row['region']}")
+                print(row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10])
             cur.close()
             return
     except sqlite3.OperationalError as e:

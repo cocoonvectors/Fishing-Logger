@@ -15,21 +15,22 @@
         </datalist>
         <input type="text" list="species-list" name="species" id="species">
     </form>
-
     {% if trips %}
-         {% for msg in get_flashed_messages() %}
-        <div id="flash-message" class="popup">{{ msg }} </div>
-        {% endfor %}
         {% for trip in trips %}
             <div style="margin-bottom: 20px;">
                 <h3>Trip {{ loop.index }}</h3>
                 <p>
                     <strong>Species:</strong> {{ trip.species }}<br>
                     <strong>Location:</strong> {{ trip.location }}<br>
-                    <strong>Weather:</strong> {{ trip.weather }}<br>
+                    <strong>Temperature:</strong> {{ trip.temperature }}<br>
+                    <strong>Condition:</strong> {{ trip.condition }}<br>
+                    <strong>Humidity:</strong> {{ trip.humidity }}<br>
+                    <strong>Wind:</strong> {{ trip.wind }}<br>
+                    <strong>Lunar Phase:</strong> {{ trip.lunarphase }}<br>
+                    <strong>Date:</strong> {{ trip.date }}<br>
                     <strong>Time:</strong> {{ trip.time }}
                 </p>
-                <form method="post" action="/delete/{{ loop.index0 }}">
+                <form method="post" action="{{ url_for('delete', trip_id=trip.trip_id) }}">
                     <input type="submit" value="Delete" style="background-color: red; color: white;">
                 </form>
             </div>

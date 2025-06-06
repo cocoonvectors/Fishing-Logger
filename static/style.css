@@ -55,7 +55,7 @@ nav a:hover {
     text-decoration: underline;
 }
 
-.popup {
+.flash.deleted {
     position: fixed;
     top: 20px;
     right: 20px;
@@ -65,7 +65,7 @@ nav a:hover {
     border-radius: 25px;
 }
 
-.logpopup {
+.flash.logged {
     position: fixed;
     top: 20px;
     right: 20px;
@@ -78,4 +78,51 @@ nav a:hover {
 .fade-out {
     transition: opacity 4.5s ease-out;
     opacity: 0;
+}
+
+.datepopup {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    background-color: lightblue;
+    padding: 10px;
+    box-shadow: #82909a 0px 5px 15px;
+    border-radius: 25px;
+    z-index: 9999;
+}
+
+
+#map { height: 400px;
+    width: 600px; }
+
+.flash.exists{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: rgb(237, 93, 93);
+    padding: 10px;
+    box-shadow: #333 0px 5px 15px;
+    border-radius: 25px;
+}
+
+.flash.wrong{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: rgb(237, 93, 93);
+    padding: 10px;
+    box-shadow: #333 0px 5px 15px;
+    border-radius: 25px;
+}
+
+.flash.regLogout{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: rgb(107, 224, 107);
+    padding: 10px;
+    box-shadow: #333 0px 5px 15px;
+    border-radius: 25px;
 }

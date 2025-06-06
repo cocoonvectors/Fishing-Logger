@@ -3,9 +3,14 @@
 {% block title %}Log a Trip{% endblock %}
 
 {% block content %}
-    {% for msg in get_flashed_messages() %}
-        <div id="flash-message" class="logpopup">{{ msg }} </div>
-    {% endfor %}
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+    </head>
+
+
     <form method="post">
         <label for="species">Species:</label><br>
         <input type="text" id="species" name="species" required><br><br>
@@ -13,16 +18,221 @@
         <label for="location">Location:</label><br>
         <input type="text" id="location" name="location" required><br><br>
 
-        <label for="weather">Weather:</label><br>
-        <input type="text" id="weather" name="weather" required><br><br>
+        <label for="temperature">Temperature:</label><br>
+        <input type="text" id="temperature" name="temperature" required><br><br>
 
-        <label for="time">Time of Day:</label><br>
-        <input type="datetime-local" id="time" name="time" required><br><br>
+        <label for="cloud_cover">Cloud Cover:</label><br>
+        <input type="text" id="cloud_cover" name="cloud_cover" required><br><br>
+
+        <label for="humidity">Humidity:</label><br>
+        <input type="text" id="humidity" name="humidity" required><br><br>
+
+        <label for="wind_speed">Wind Speed:</label><br>
+        <input type="text" id="wind_speed" name="wind_speed" required><br><br>
+
+        <label for="lunar_phase">Lunar Phase:</label><br>
+        <input type="text" id="lunar_phase" name="lunar_phase" required><br><br>
+
+        <!-- <label for="solar_phase">Solar Phase:</label><br>
+        <input type="text" id="solar_phase" name="solar_phase" required><br><br> -->
+
+        <label for="currentDate"> Just Caught?</label><br>
+        <input type="checkbox" id="currentDate" name="currentDate" value="true"><br><br>
+
+        <label for="date">Date:</label><br>
+        <input type="date" id="date" name="date" required><br><br>
+
+        <label for="time">Time of Catch:</label><br>
+        <input type="time" id="time" name="time" required><br><br>
+
+        <div id="map"></div>
+        <input type="text" id="latlong" name="latlong" hidden><br><br>
 
         <input type="submit" value="Submit">
+
     </form>
+
+    <div id="catchDatePopup" class = "datepopup" hidden>
+        <p>Please enter your catch date before using the map!</p>
+    </div>
+
 {% endblock %}
 
 {% block scripts %}
   {{ super() }}
+
+  <script>
+        document.addEventListener("DOMContentLoaded", function (e) {
+            console.log("Page loaded");
+            console.log(document.getElementById('date').value)
+            
+            //init objects
+            var newMarker,map,markerGroup
+            map = L.map('map').setView([51.505, -0.09], 13);
+            //create layer for markers
+            markerGroup = L.layerGroup().addTo(map);
+            map.on('click', onMapClick);
+            //give credit and 
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}).addTo(map);
+
+            const mapAccess = document.getElementById("currentDate");
+            var catchDate = new Date();
+            mapAccess.addEventListener("change", function () {
+                // Your logic goes here:
+                // if checked, update date and time inputs
+                if (mapAccess.checked){
+                    console.log(mapAccess);
+                    catchDate = new Date().toISOString().split("T")[0];
+                    let now = new Date();
+                    let hours = now.getHours().toString().padStart(2, "0");
+                    let minutes = now.getMinutes().toString().padStart(2, "0");
+                    let time = `${hours}:${minutes}`;
+                    document.getElementById("date").value = catchDate;
+                    document.getElementById("time").value = time;
+                } 
+            });
+
+            //add and remove markers to only show one spot at a time
+            function onMapClick(e) {
+                catchDate = document.getElementById("date").value;
+                catchTime = document.getElementById("time").value;
+                if (mapAccess.checked || (catchDate !== "" && catchTime !== "")) {
+                    const todayDate = new Date().toISOString().split("T")[0];
+                    markerGroup.clearLayers();
+
+                    newMarker = L.marker(e.latlng).addTo(map);
+                    markerGroup.addLayer(newMarker);
+                    //pass form data
+                    document.getElementById("latlong").value = newMarker.getLatLng();
+
+                    //build API call
+                    let markerLat = newMarker.getLatLng().lat;
+                    let markerLong = newMarker.getLatLng().lng;
+                    //fetch location
+                    fetch("/api/geocode",{
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            lat: markerLat,
+                            lon: markerLong,
+                        }),
+                    }).then((response) => response.json())
+                    .then((data) => {
+                        console.log(data);
+                        //grab formatted location info and set it in the form
+                        let locName = data.results[0].formatted
+                        document.getElementById("location").value = locName;
+                    })
+                    .catch((err) => console.error("API error:", err));
+
+                    if (catchDate != todayDate) {
+                        fetch("/api/histweather",{
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            lat: markerLat,
+                            lon: markerLong,
+                            date: catchDate,
+                        }),
+                    }).then((response) => response.json())
+                    .then((data) => {
+                        // grab formatted location info and set it in the form
+                        console.log(data);
+                        const hourly = data.forecast.forecastday[0].hour;
+                        const targetTime = `${catchDate} ${catchTime}`;
+                        console.log(targetTime)
+                        var locTemp,locHumid,locWind,locCloud
+                        for (let i = 0; i < hourly.length; i++) {
+                        const hourEntry = hourly[i];
+                        if (hourEntry.time <= targetTime && targetTime <= hourly[i+1].time ) {
+                            locHumid = hourEntry.humidity;
+                            locTemp = hourEntry.temp_c;
+                            locWind = hourEntry.wind_kph;
+                            locCloud = hourEntry.condition.text
+                        }
+                        }
+
+                        document.getElementById("temperature").value = locTemp + "c";
+                        document.getElementById("cloud_cover").value = locCloud;
+                        document.getElementById("humidity").value = locHumid;
+                        document.getElementById("wind_speed").value = locWind;
+                    })
+                    .catch((err) => console.error("API error:", err));
+                    }else{
+                        fetch("/api/weather",{
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            lat: markerLat,
+                            lon: markerLong,
+                        }),
+                    }).then((response) => response.json())
+                    .then((data) => {
+                        // grab formatted location info and set it in the form
+                        console.log(data);
+                        let locTemp = data.current.temp_c;
+                        let locCloud = data.current.condition.text;
+                        let locHumid = data.current.humidity;
+                        let locWind = data.current.wind_kph;
+
+                        document.getElementById("temperature").value = locTemp + "c";
+                        document.getElementById("cloud_cover").value = locCloud;
+                        document.getElementById("humidity").value = locHumid;
+                        document.getElementById("wind_speed").value = locWind;
+                    })
+                    .catch((err) => console.error("API error:", err));
+                        
+                    }
+                    fetch("/api/astro",{
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            lat: markerLat,
+                            lon: markerLong,
+                            date: catchDate,
+                        }),
+                    }).then((response) => response.json())
+                    .then((data) => {
+                        //grab formatted location info and set it in the form
+                        console.log(data);
+                        let locLunarPhase = data.astronomy.astro.moon_phase;
+                        // let locSunrise = data.astronomy.astro.sunrise;
+                        // let locSunset = data.current.condition.text;
+
+                        document.getElementById("lunar_phase").value = locLunarPhase;
+
+                        //figure out solar phase
+
+                        // document.getElementById("solar_phase").value = locSunrise;
+                    })
+                    .catch((err) => console.error("API error:", err));
+                    } else{
+                        console.log("here")
+                        datePopup = document.getElementById("catchDatePopup")
+                        datePopup.style.display = "flex";
+
+                        // wait 5s, then start fading
+                        setTimeout(function () {
+                            datePopup.classList.add("fade-out");
+
+                            // wait 4.5s (the duration of your fade), then hide it
+                            setTimeout(function () {
+                                datePopup.style.display = "none";
+                            }, 2000);
+                        }, 2500);
+                    }
+                   
+                }
+        });
+  </script>
 {% endblock %}

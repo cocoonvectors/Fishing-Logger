@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Fishing Logger{% endblock %}
+
+{% block content %}
+
+    <p>Welcome to Fishing Logger!</p><br>
+    <p>Please add a username and password</p>
+    <form method="post">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="password">Password:</label><br>
+        <input type="text" id="password" name="password" required><br><br>
+
+        <input type="submit" value="Submit">
+
+    </form>
+    <p><a href="/">Already have an account?</a></p>
+
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+{% endblock %}

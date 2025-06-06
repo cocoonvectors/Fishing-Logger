@@ -1,56 +1,13 @@
 [
     {
-        "species": "salmon",
-        "weather": "",
-        "location": "",
-        "time": ""
-    },
-    {
-        "species": "salmon",
-        "weather": "",
-        "location": "",
-        "time": ""
-    },
-    {
-        "species": "salmon",
-        "weather": "",
-        "location": "",
-        "time": ""
-    },
-    {
-        "species": "salmon",
-        "weather": "",
-        "location": "",
-        "time": ""
-    },
-    {
-        "species": "SALMON",
-        "weather": "",
-        "location": "",
-        "time": ""
-    },
-    {
         "species": "trout",
-        "weather": "",
-        "location": "",
-        "time": ""
-    },
-    {
-        "species": "",
-        "weather": "",
-        "location": "",
-        "time": ""
-    },
-    {
-        "species": "SALMON",
-        "weather": "",
-        "location": "",
-        "time": "2025-05-08T00:22"
-    },
-    {
-        "species": "salmon",
-        "weather": "",
-        "location": "",
-        "time": ""
+        "temperature": "18.1c",
+        "condition": "Moderate rain",
+        "humidity": "60",
+        "wind": "12.2",
+        "lunarphase": "Waning Crescent",
+        "date": "2025-05-21",
+        "location": "Verulam Gardens, Gray's Inn Road, London, WC1R 5JT, United Kingdom",
+        "time": "15:46"
     }
 ]

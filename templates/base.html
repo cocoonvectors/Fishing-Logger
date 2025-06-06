@@ -3,46 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Fishing Logger{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <header>
         <h1>🎣 Fishing Logger</h1>
         <nav>
-            <a href="/">Home</a> |
+            <a href="/home">Home</a> |
             <a href="/log">Log a Trip</a> |
             <a href="/trips">View Trips</a>
+            <a href="/logout">Logout</a>
         </nav>
         <hr>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="flash {{ category }}">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
     </header>
-    {% block content %}{% endblock %}
+    {% block content %}
+    {% endblock %}
 
 
     {% block scripts %}
 
     <script>
-        console.log("JS loaded", window.location.pathname);
         var flashmessage = document.getElementById("flash-message");
-        console.log("flashmessage:", flashmessage);
-
+        console.log(flashmessage)
         if (flashmessage && window.location.pathname === "/trips" && flashmessage.textContent.includes("Deleted Catch")) {
-                //display message
-                flashmessage.style.display = "flex";
-                //hide message after 3s
-                setTimeout(function() {flashmessage.style.display = "none";}, 5000);
+            //display message
+            flashmessage.style.display = "flex";
+
+            // wait 5s, then start fading
+            setTimeout(function () {
                 flashmessage.classList.add("fade-out");
+
+                // wait 4.5s (the duration of your fade), then hide it
+                setTimeout(function () {
+                    flashmessage.style.display = "none";
+                }, 4500);
+            }, 5000);
+
         } else if (flashmessage && window.location.pathname === "/log" && flashmessage.textContent.includes("Trip logged")) {
-                //display message
-                flashmessage.style.display = "flex";
-                //hide message after 3s
-                setTimeout(function() {flashmessage.style.display = "none";}, 5000);
+            // show the message first
+            flashmessage.style.display = "flex";
+
+            // wait 5s, then start fading
+            setTimeout(function () {
                 flashmessage.classList.add("fade-out");
+
+                // wait 4.5s (the duration of your fade), then hide it
+                setTimeout(function () {
+                    flashmessage.style.display = "none";
+                }, 4500);
+            }, 5000);
+
+
+        }else if (flashmessage && window.location.pathname === "/register" && flashmessage.textContent.includes("User already exists.")) {
+            // show the message first
+            flashmessage.style.display = "flex";
+
+            // wait 5s, then start fading
+            setTimeout(function () {
+                flashmessage.classList.add("fade-out");
+
+                // wait 4.5s (the duration of your fade), then hide it
+                setTimeout(function () {
+                    flashmessage.style.display = "none";
+                }, 4500);
+            }, 5000);
+
+
+        }else if (flashmessage && window.location.pathname === "/register" && flashmessage.textContent.includes("Registered!")) {
+            // show the message first
+            flashmessage.style.display = "flex";
+
+            // wait 5s, then start fading
+            setTimeout(function () {
+                flashmessage.classList.add("fade-out");
+
+                // wait 4.5s (the duration of your fade), then hide it
+                setTimeout(function () {
+                    flashmessage.style.display = "none";
+                }, 4500);
+            }, 5000);
+
+
+        }else if (flashmessage && window.location.pathname === "/" && flashmessage.textContent.includes("You have been logged out.")) {
+            // show the message first
+            flashmessage.style.display = "flex";
+
+            // wait 5s, then start fading
+            setTimeout(function () {
+                flashmessage.classList.add("fade-out");
+
+                // wait 4.5s (the duration of your fade), then hide it
+                setTimeout(function () {
+                    flashmessage.style.display = "none";
+                }, 4500);
+            }, 5000);
+
+
+        }else if (flashmessage && window.location.pathname === "/" && flashmessage.textContent.includes("Registered! Please login with your new account")) {
+            // show the message first
+            flashmessage.style.display = "flex";
+
+            // wait 5s, then start fading
+            setTimeout(function () {
+                flashmessage.classList.add("fade-out");
+
+                // wait 4.5s (the duration of your fade), then hide it
+                setTimeout(function () {
+                    flashmessage.style.display = "none";
+                }, 4500);
+            }, 5000);
+
+
+        }else if (flashmessage && window.location.pathname === "/" && flashmessage.textContent.includes("Wrong Username or Password please try again.")) {
+            // show the message first
+            flashmessage.style.display = "flex";
+
+            // wait 5s, then start fading
+            setTimeout(function () {
+                flashmessage.classList.add("fade-out");
+
+                // wait 4.5s (the duration of your fade), then hide it
+                setTimeout(function () {
+                    flashmessage.style.display = "none";
+                }, 4500);
+            }, 5000);
+
 
         }else { 
                 //do nothing
                 console.log("No flash message to display.");
         }
     </script>
+
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin="">
+    </script>
+
 {% endblock %}
 
 </body>
