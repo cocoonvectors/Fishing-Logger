@@ -37,4 +37,7 @@ As of now there are no plans to make this a commercial product.
   - Weather and astronomy data provided by WeatherAPI.com<br/>
   - Fish species dataset inspired by data from gbif.org
 
+**License**</br>
+This project is licensed under the [MIT License](LICENSE).
+
 
