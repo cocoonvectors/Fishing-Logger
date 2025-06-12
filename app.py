@@ -99,7 +99,7 @@ def Log():
         location = request.form.get("location")
         time = request.form.get("time")
         
-        insertTrip(id,latlong,location,date,time,temperature,condition,humidity,wind,lunarphase)
+        insertTrip(session["userId"],id,latlong,location,date,time,temperature,condition,humidity,wind,lunarphase)
 
         flash("Trip logged","logged") #just a popup to let the user know their catch is saved
         return redirect("/log")
@@ -132,16 +132,16 @@ def delete(trip_id):
     flash("Deleted Catch","deleted")
     return redirect("/trips")
 
-def insertTrip (species_id,latlong,location,date,time,temperature,cloud_cover,humidity,wind_speed,lunar_phase):
+def insertTrip (user_id,species_id,latlong,location,date,time,temperature,cloud_cover,humidity,wind_speed,lunar_phase):
        with sqlite3.connect("fishing.db") as conn:
             conn.execute("""
                          INSERT INTO trips(
-                            species_id,latlong,location,date,time,temperature,
-                            cloud_cover,humidity,
+                            user_id, species_id,latlong,location,date,time,
+                            temperature,cloud_cover,humidity,
                             wind_speed,lunar_phase
-                         ) VALUES (?,?,?,?,?,?,?,?,?,?)""",
+                         ) VALUES (?,?,?,?,?,?,?,?,?,?,?)""",
                         (
-                            species_id,latlong,location,
+                            user_id,species_id,latlong,location,
                             date,time,temperature,
                             cloud_cover,humidity,wind_speed,lunar_phase
                          ))
@@ -164,6 +164,7 @@ def getSpeciesId(name):
 
 def getTrips():
            with sqlite3.connect("fishing.db") as conn:
+            print(session["userId"])
             conn.row_factory = sqlite3.Row
             cur = conn.cursor()
             cur.execute("""
@@ -179,7 +180,8 @@ def getTrips():
                             trips.lunar_phase 
                         from trips
                         inner join species ON trips.species_id = species.id
-                        """)
+                        where user_id = ?
+                        """,(session["userId"],))
             rows = cur.fetchall()
             trips = []
             for row in rows:
