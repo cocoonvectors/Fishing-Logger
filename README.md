@@ -1,4 +1,4 @@
-# A **Fishing Logger:**<br/>
+# A **Fishing Logger: (Project is still in progress)**<br/>
   This is a small hobby project I made to log my fishing catches.
   
   The goal is to eventually release it for free on both mobile and web. I built it to create a local journal of your fishing trips and to keep your private fishing spots safe.
