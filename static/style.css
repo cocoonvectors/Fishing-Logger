@@ -1,15 +1,26 @@
-body {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+html, body {
     font-family: Arial, sans-serif;
-    max-width: 700px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #f4f8fb;
     color: #333;
+    height: 100%;
+    width: 100%;
+    margin: 0;
 }
 
 h1, h3 {
     color: #0077cc;
+    text-align: center;
 }
+
+img {
+    float: left;
+    width: 150px;
+  }
 
 a {
     color: #0077cc;
@@ -20,40 +31,45 @@ a:hover {
     text-decoration: underline;
 }
 
-form input[type="text"] {
-    padding: 8px;
-    width: 100%;
-    margin-bottom: 10px;
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 30px;
+    background-color: #f5f6f6;
 }
-
-form input[type="submit"] {
-    background-color: #0077cc;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
+  
+.logo {
+    height: 60px;
 }
-
-form input[type="submit"]:hover {
-    background-color: #005fa3;
-}
-nav {
-    background-color: #0077cc;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-}
-
-nav a {
-    color: white;
+  
+.nav-list {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+    justify-content: center;
+  }
+  
+.logout-link {
     text-decoration: none;
-    margin-right: 15px;
+    color: rgb(171, 90, 90);
     font-weight: bold;
-}
+    font-size: 20px;
+  }
+  
+  
+.nav-list li a {
+    text-decoration: none;
+    color: rgb(91, 153, 214);
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  
 
-nav a:hover {
-    text-decoration: underline;
-}
 
 .flash.deleted {
     position: fixed;
@@ -125,4 +141,157 @@ nav a:hover {
     padding: 10px;
     box-shadow: #333 0px 5px 15px;
     border-radius: 25px;
+}
+
+/*Login Page CSS*/
+body.login-body{
+    background-color: #b0c4de;
+}
+
+
+main.login-wrapper{
+    height: 80%;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+p.welcometext{
+    font-weight: bold;
+    font-size: 36px;
+    color: white;
+}
+
+a.reg{
+    font-size: 18px;
+    color: white;
+    text-decoration: underline;
+    margin-top: 20px;
+}
+
+form.userinfo{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #F9FAFB; 
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.4); 
+    border-radius: 8px;
+    padding: 20px;
+
+}
+
+form input[type="text"] {
+    padding: 8px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+form input[type="submit"] {
+    background-color: #4A7C59;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+    background-color: #4A7C59;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+}
+
+/*Home Page CSS*/
+
+body.home-body{
+    background-color: #b0c4de;
+}
+
+div.homeimage {
+    text-align: right;
+    height: 100%;
+
+}
+
+img.home{
+    object-fit: cover;  
+    object-position: 50% 80%;  
+    height: 100%;
+    width: 50%;
+    float: right;
+} 
+
+div.welcome{
+    text-align: center;
+    position: absolute;
+    top: 40%;
+    width:50%;
+}
+
+p.welcome{
+    font-weight: bold;
+    font-size: 22px;
+    color: white;
+}
+
+p.logreg{
+    text-align: center;
+}
+
+a.account{
+    font-weight: bold;
+    font-size: 18px;
+    color: #4A7C59;
+}
+
+/* Register Page */
+
+body.register-body{
+    background-color: #b0c4de;
+}
+
+main.create-account{
+    height: 80%;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+form.create-account{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #F9FAFB; 
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.4); 
+    border-radius: 8px;
+    padding: 20px;
+}
+
+p.welcreg{
+    font-weight: bold;
+    font-size: 22px;
+    color: white;
+}
+
+/* Account Home */
+
+body.accounthome-body{
+    background-color: #b0c4de;
+}
+
+main.account{
+    height: 100%;
+}
+
+div.account{
+    text-align: center;
+    position: absolute;
+    top: 50%;
 }

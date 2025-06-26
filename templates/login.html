@@ -2,21 +2,25 @@
 
 {% block title %}Home - Fishing Logger{% endblock %}
 
+{% block body_class %}login-body{% endblock %}
+
 {% block content %}
 
-    <p>Welcome to Fishing Logger! Create an Account or login</p>
-    <p><a href="/register">Register</a></p>
-
-    <form method="post">
+<main class="login-wrapper">
+  <p class="welcometext">Welcome back!</p>
+    <form method="post" class="userinfo">
         <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username" required><br><br>
+        <input type="username" id="username" name="username" required><br>
 
         <label for="password">Password:</label><br>
-        <input type="text" id="password" name="password" required><br><br>
+        <input type="password" id="password" name="password" required><br>
+
+        <p class="register"><a class="reg" href="/register">Create an account</a></p><br>
 
         <input type="submit" value="Submit">
 
     </form>
+</main>
 {% endblock %}
 
 {% block scripts %}

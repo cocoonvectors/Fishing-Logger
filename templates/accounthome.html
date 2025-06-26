@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Fishing Logger{% endblock %}
+
+{% block body_class %}accounthome-body{% endblock %}
+
+{% block content %}
+  <!-- <div class="homeimage"> <img class="home" src="static/homepage.png" alt="">  -->
+    <div class="account">
+      <p class="account"> Welcome back! Add your catches and review your trips.</p></br>
+      <p class="logcatch"><a class="logcatch" href="/log">Log a catch!</a></p></br>
+      <p class="trips"><a class="trips" href="/trips">Review your trips</a></p>
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+{% endblock %}

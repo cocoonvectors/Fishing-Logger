@@ -2,10 +2,16 @@
 
 {% block title %}Home - Fishing Logger{% endblock %}
 
+{% block body_class %}home-body{% endblock %}
+
 {% block content %}
-    <p>Welcome to Fishing Logger! Track your catches and review your trips.</p>
-    <p><a href="/log">Log a New Trip</a></p>
-    <p><a href="/trips">View All Trips</a></p>
+  <div class="homeimage"> <img class="home" src="static/homepage.png" alt=""> 
+    <div class="welcome">
+      <p class="welcome"> Welcome to Fishing Logger! Track your catches and review your trips.</p></br>
+      <p class="logreg"><a class="account" href="/">Login</a></p></br>
+      <p class="logreg"><a class="account" href="/register">New? Create an Account!</a></p>
+    </div>
+  </div>
 {% endblock %}
 
 {% block scripts %}

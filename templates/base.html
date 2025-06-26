@@ -2,19 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>{% block title %}Fishing Logger{% endblock %}</title>
 </head>
-<body>
+<body class="{% block body_class %}default-body{% endblock %}"></body>
     <header>
-        <h1>🎣 Fishing Logger</h1>
-        <nav>
-            <a href="/home">Home</a> |
-            <a href="/log">Log a Trip</a> |
-            <a href="/trips">View Trips</a>
-            <a href="/logout">Logout</a>
-        </nav>
+        <nav class="navbar">
+            <img src="{{ url_for('static', filename='Fishinglogger.png') }}" alt="Logo" class="logo" />
+            <ul class="nav-list">
+              <li><a href="/home">Home</a></li>
+              <li><a href="/log">Log a Trip</a></li>
+              <li><a href="/trips">View Trips</a></li>
+            </ul>
+            <a href="/logout" class="logout-link">Logout</a>
+          </nav>
+        
         <hr>
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
           {% for category, message in messages %}

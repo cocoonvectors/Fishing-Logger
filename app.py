@@ -65,13 +65,18 @@ def login():
                 verifyPassword = check_password_hash(row["password"],request.form.get("password"))
                 if verifyPassword:
                     session["userId"] = row["id"]
-                    return redirect("/home")                
+                    return redirect("/accounthome")                
                 else:
                     flash("Wrong Username or Password please try again.","wrong")
             else: #logging new user into db
                 flash("Username doesn't exist please register.","wrong")
                 return redirect("/register")
     return render_template("login.html")
+
+@app.route("/accounthome")
+@logged_in
+def accountHome():
+    return render_template("accounthome.html")
 
 @app.route("/logout")
 def logout():
