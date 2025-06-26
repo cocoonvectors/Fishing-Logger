@@ -70,7 +70,7 @@
             //create layer for markers
             markerGroup = L.layerGroup().addTo(map);
             map.on('click', onMapClick);
-            //give credit and 
+            //give credit 
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}).addTo(map);
@@ -78,7 +78,6 @@
             const mapAccess = document.getElementById("currentDate");
             var catchDate = new Date();
             mapAccess.addEventListener("change", function () {
-                // Your logic goes here:
                 // if checked, update date and time inputs
                 if (mapAccess.checked){
                     catchDate = new Date().toISOString().split("T")[0];
@@ -212,11 +211,9 @@
                         datePopup = document.getElementById("catchDatePopup")
                         datePopup.style.display = "flex";
 
-                        // wait 5s, then start fading
                         setTimeout(function () {
                             datePopup.classList.add("fade-out");
 
-                            // wait 4.5s (the duration of your fade), then hide it
                             setTimeout(function () {
                                 datePopup.style.display = "none";
                             }, 2000);

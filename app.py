@@ -88,7 +88,7 @@ def logout():
 @logged_in
 def Log():
     if request.method == "POST":
-        # Handle the form submission here
+        # handle the form submission here
         name = request.form.get("species")
 
         #checking if species is in db or if we need to add it

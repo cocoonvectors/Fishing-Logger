@@ -35,28 +35,22 @@
     <script>
         var flashmessage = document.getElementById("flash-message");
         if (flashmessage && window.location.pathname === "/trips" && flashmessage.textContent.includes("Deleted Catch")) {
-            //display message
             flashmessage.style.display = "flex";
 
-            // wait 5s, then start fading
             setTimeout(function () {
                 flashmessage.classList.add("fade-out");
 
-                // wait 4.5s (the duration of your fade), then hide it
                 setTimeout(function () {
                     flashmessage.style.display = "none";
                 }, 4500);
             }, 5000);
 
         } else if (flashmessage && window.location.pathname === "/log" && flashmessage.textContent.includes("Trip logged")) {
-            // show the message first
             flashmessage.style.display = "flex";
 
-            // wait 5s, then start fading
             setTimeout(function () {
                 flashmessage.classList.add("fade-out");
 
-                // wait 4.5s (the duration of your fade), then hide it
                 setTimeout(function () {
                     flashmessage.style.display = "none";
                 }, 4500);
@@ -64,14 +58,11 @@
 
 
         }else if (flashmessage && window.location.pathname === "/register" && flashmessage.textContent.includes("User already exists.")) {
-            // show the message first
             flashmessage.style.display = "flex";
 
-            // wait 5s, then start fading
             setTimeout(function () {
                 flashmessage.classList.add("fade-out");
 
-                // wait 4.5s (the duration of your fade), then hide it
                 setTimeout(function () {
                     flashmessage.style.display = "none";
                 }, 4500);
@@ -79,14 +70,11 @@
 
 
         }else if (flashmessage && window.location.pathname === "/register" && flashmessage.textContent.includes("Registered!")) {
-            // show the message first
             flashmessage.style.display = "flex";
 
-            // wait 5s, then start fading
             setTimeout(function () {
                 flashmessage.classList.add("fade-out");
 
-                // wait 4.5s (the duration of your fade), then hide it
                 setTimeout(function () {
                     flashmessage.style.display = "none";
                 }, 4500);
@@ -94,14 +82,11 @@
 
 
         }else if (flashmessage && window.location.pathname === "/" && flashmessage.textContent.includes("You have been logged out.")) {
-            // show the message first
             flashmessage.style.display = "flex";
 
-            // wait 5s, then start fading
             setTimeout(function () {
                 flashmessage.classList.add("fade-out");
 
-                // wait 4.5s (the duration of your fade), then hide it
                 setTimeout(function () {
                     flashmessage.style.display = "none";
                 }, 4500);
@@ -109,14 +94,11 @@
 
 
         }else if (flashmessage && window.location.pathname === "/" && flashmessage.textContent.includes("Registered! Please login with your new account")) {
-            // show the message first
             flashmessage.style.display = "flex";
 
-            // wait 5s, then start fading
             setTimeout(function () {
                 flashmessage.classList.add("fade-out");
 
-                // wait 4.5s (the duration of your fade), then hide it
                 setTimeout(function () {
                     flashmessage.style.display = "none";
                 }, 4500);
@@ -124,14 +106,11 @@
 
 
         }else if (flashmessage && window.location.pathname === "/" && flashmessage.textContent.includes("Wrong Username or Password please try again.")) {
-            // show the message first
             flashmessage.style.display = "flex";
 
-            // wait 5s, then start fading
             setTimeout(function () {
                 flashmessage.classList.add("fade-out");
 
-                // wait 4.5s (the duration of your fade), then hide it
                 setTimeout(function () {
                     flashmessage.style.display = "none";
                 }, 4500);
@@ -139,7 +118,6 @@
 
 
         }else { 
-                //do nothing
                 console.log("No flash message to display.");
         }
     </script>
