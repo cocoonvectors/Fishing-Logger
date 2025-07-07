@@ -287,11 +287,44 @@ body.accounthome-body{
 }
 
 main.account{
-    height: 100%;
-}
+    height: 80%;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; }
 
 div.account{
     text-align: center;
     position: absolute;
-    top: 50%;
+}
+
+
+/* Log trip */
+
+body.log-body{
+    background-color: #b0c4de;
+    overflow: scroll;
+    height: 80%;
+}
+
+main.log{
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+form.logtrip{
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #F9FAFB; 
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.4); 
+    border-radius: 8px;
+    padding: 20px;
+}
+
+head.loghead{
+    z-index: 9;
 }

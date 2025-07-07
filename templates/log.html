@@ -2,60 +2,63 @@
 
 {% block title %}Log a Trip{% endblock %}
 
+{% block body_class %}log-body{% endblock %}
+
 {% block content %}
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-        crossorigin=""/>
-    </head>
+    <main class="log">
+        <head>
+            <meta charset="UTF-8">
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+            integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+            crossorigin=""/>
+        </head>
 
 
-    <form method="post">
-        <label for="species">Species:</label><br>
-        <input type="text" id="species" name="species" required><br><br>
+        <form class="logtrip" method="post">
+            <label for="species">Species:</label><br>
+            <input type="text" id="species" name="species" required><br><br>
 
-        <label for="location">Location:</label><br>
-        <input type="text" id="location" name="location" required><br><br>
+            <label for="location">Location:</label><br>
+            <input type="text" id="location" name="location" required><br><br>
 
-        <label for="temperature">Temperature:</label><br>
-        <input type="text" id="temperature" name="temperature" required><br><br>
+            <label for="temperature">Temperature:</label><br>
+            <input type="text" id="temperature" name="temperature" required><br><br>
 
-        <label for="cloud_cover">Cloud Cover:</label><br>
-        <input type="text" id="cloud_cover" name="cloud_cover" required><br><br>
+            <label for="cloud_cover">Cloud Cover:</label><br>
+            <input type="text" id="cloud_cover" name="cloud_cover" required><br><br>
 
-        <label for="humidity">Humidity:</label><br>
-        <input type="text" id="humidity" name="humidity" required><br><br>
+            <label for="humidity">Humidity:</label><br>
+            <input type="text" id="humidity" name="humidity" required><br><br>
 
-        <label for="wind_speed">Wind Speed:</label><br>
-        <input type="text" id="wind_speed" name="wind_speed" required><br><br>
+            <label for="wind_speed">Wind Speed:</label><br>
+            <input type="text" id="wind_speed" name="wind_speed" required><br><br>
 
-        <label for="lunar_phase">Lunar Phase:</label><br>
-        <input type="text" id="lunar_phase" name="lunar_phase" required><br><br>
+            <label for="lunar_phase">Lunar Phase:</label><br>
+            <input type="text" id="lunar_phase" name="lunar_phase" required><br><br>
 
-        <!-- <label for="solar_phase">Solar Phase:</label><br>
-        <input type="text" id="solar_phase" name="solar_phase" required><br><br> -->
+            <!-- <label for="solar_phase">Solar Phase:</label><br>
+            <input type="text" id="solar_phase" name="solar_phase" required><br><br> -->
 
-        <label for="currentDate"> Just Caught?</label><br>
-        <input type="checkbox" id="currentDate" name="currentDate" value="true"><br><br>
+            <label for="currentDate"> Just Caught?</label><br>
+            <input type="checkbox" id="currentDate" name="currentDate" value="true"><br><br>
 
-        <label for="date">Date:</label><br>
-        <input type="date" id="date" name="date" required><br><br>
+            <label for="date">Date:</label><br>
+            <input type="date" id="date" name="date" required><br><br>
 
-        <label for="time">Time of Catch:</label><br>
-        <input type="time" id="time" name="time" required><br><br>
+            <label for="time">Time of Catch:</label><br>
+            <input type="time" id="time" name="time" required><br><br>
 
-        <div id="map"></div>
-        <input type="text" id="latlong" name="latlong" hidden><br><br>
+            <div id="map"></div>
+            <input type="text" id="latlong" name="latlong" hidden><br><br>
 
-        <input type="submit" value="Submit">
+            <input type="submit" value="Submit">
 
-    </form>
+        </form>
 
-    <div id="catchDatePopup" class = "datepopup" hidden>
-        <p>Please enter your catch date before using the map!</p>
-    </div>
-
+        <div id="catchDatePopup" class = "datepopup" hidden>
+            <p>Please enter your catch date before using the map!</p>
+        </div>
+    </main> 
 {% endblock %}
 
 {% block scripts %}
